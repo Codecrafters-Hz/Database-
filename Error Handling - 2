@@ -1,0 +1,18 @@
+BEGIN TRY
+    BEGIN TRANSACTION;
+
+    DECLARE @Connector_ID UNIQUEIDENTIFIER = 'NEWID()';  
+    DECLARE @Data NVARCHAR(MAX) = '{"measurement": 23.5, "status": "OK"}';  
+    DECLARE @Timestamp DATETIME = GETDATE();  
+
+   
+   INSERT INTO dbo.ConnectorData (Connector_ID, Data, Timestamp)
+    VALUES (@Connector_ID, @Data, @Timestamp);
+
+   
+    COMMIT;
+END TRY
+BEGIN CATCH
+    ROLLBACK; 
+    PRINT 'Error occurred: ' + ERROR_MESSAGE();
+END CATCH;
