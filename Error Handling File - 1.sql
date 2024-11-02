@@ -5,4 +5,4 @@ END TRY
 BEGIN CATCH
     ROLLBACK;
     PRINT 'Error occurred: ' + ERROR_MESSAGE();
-END CATCH;
+END CATCH:
